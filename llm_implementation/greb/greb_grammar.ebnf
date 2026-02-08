@@ -1,0 +1,80 @@
+GREB Thought Language — Grammar Overview
+
+The Generic Role–Entity-Based (GREB) Thought Language is a controlled, declarative representation designed to encode semantic relationships between entities using explicit role associations. Instead of modeling geometry directly, GREB represents spatial and functional structure as a graph composed of entities (e.g., rooms, walls, doors) and role pairs (e.g., room & wall, wall & door, connected & access). This abstraction enables reasoning over topological relationships, access paths, and component composition without requiring metric or geometric information.
+
+The grammar below defines a simplified Extended Backus–Naur Form (EBNF) for the GREB language, as used in this work. It specifies the lexical elements (identifiers, numbers, time expressions), the structure of role-based associations, and the permissible forms of declarations and association paths. In the context of this project, the grammar serves as the formal target language for LLM-generated outputs, ensuring syntactic validity and consistency across generated GREB programs. All GREB code produced in the experiments strictly adheres to this grammar.
+
+============================================================
+   GREB Thought Language — Simplified EBNF
+============================================================ 
+
+DigitWithoutZero = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+Digit            = "0" | DigitWithoutZero ;
+
+NaturalNumber    = DigitWithoutZero , { Digit } ;
+
+Integer          = "0" | [ "-" ] , NaturalNumber ;
+
+LowerCaseLetter  = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+                 | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+                 | "u" | "v" | "w" | "x" | "y" | "z" ;
+
+UpperCaseLetter  = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J"
+                 | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T"
+                 | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+
+Letter           = LowerCaseLetter | UpperCaseLetter ;
+
+Hour             = "0" | "1" | "2" , Digit ;
+Minute           = "0" | "1" | "2" | "3" | "4" | "5" , Digit ;
+Second           = "0" | "1" | "2" | "3" | "4" | "5" , Digit ;
+Millisecond      = Digit , Digit , Digit ;
+
+Time             = Hour , ":" , Minute , ":" , Second , [ "." , Millisecond ] ;
+
+Day              = "0" | "1" | "2" | "3" , Digit ;
+Month            = "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08"
+                 | "09" | "10" | "11" | "12" ;
+
+Year             = Digit , Digit , Digit , Digit ;
+
+Date             = Year , "-" , Month , "-" , Day ;
+
+DateTime         = Date , " " , Time ;
+
+ValidityPeriod   = "[" , "" | DateTime , "-" , "" | DateTime , "]" ;
+
+Announcement     = DateTime ;
+Withdrawal       = DateTime ;
+
+Entity           = UpperCaseLetter , { LowerCaseLetter } ;
+
+Role             = LowerCaseLetter , { LowerCaseLetter } ;
+
+RolePair         = Role , "&" , Role ;
+
+GiverRole        = TakerRole = Role ;
+
+RoleGiver        = RoleTaker = Entity | Role | RolePair | "{" , Association , "}" ;
+
+Impressor        = Entity ;
+
+RightPartMidVal  = "(" , RolePair , ")" , [ ValidityPeriod ] , RoleTaker
+                 , [ "@" , Impressor , ";" , Announcement , "-" , Withdrawal , "@" ] ;
+
+RightPartEndVal  = "(" , RolePair , ")" , RoleTaker , [ ValidityPeriod ]
+                 , [ "@" , Impressor , ";" , Announcement , "-" , Withdrawal , "@" ] ;
+
+Association      = RoleGiver , RightPartMidVal | RightPartEndVal ;
+
+AssociationPath  = Association , { RightPartMidVal } ;
+
+CommandAssociation = Association , "(changed, change)" , Association ;
+
+Declaration      = Association | AssociationPath , ";" ;
+
+Interrogation    = Entity | GiverRole | TakerRole | Association | AssociationPath , "?" ;
+
+Exclamation      = CommandAssociation , "!" ;
+
+WithdrawalStmt   = Association | AssociationPath , "^" ;

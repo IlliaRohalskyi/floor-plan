@@ -1,0 +1,161 @@
+This file contains a structured natural-language description of the third floor (3. Obergeschoss) of building HW. It is intended to be read as an authoritative semantic specification of the floor plan rather than as a narrative explanation or architectural drawing substitute. Each room, corridor, and service space is described explicitly in terms of its walls, doors, and access relationships.
+
+The description is written to be both human-readable and machine-interpretable. It serves as the direct input for generating a GREB (Generic Role–Entity-Based) representation, where rooms and building elements are modeled as entities connected by formal role associations. Directions (north, east, south, west) refer to the plan orientation stated in the file and are used consistently throughout.
+
+No geometric dimensions, proportions, or visual details are implied. Instead, the focus is on topological structure—what spaces exist, how they are connected, and through which walls or doors access occurs. Readers should therefore interpret this file as a controlled textual abstraction of the floor plan that defines connectivity and adjacency, not exact physical geometry.
+
+HW – 3. OBERGESCHOSS
+TEXTUAL FLOOR PLAN DESCRIPTION
+(Authoritative Input for GREB Generation)
+
+1. GENERAL INFORMATION
+
+Building: HW  
+Level: 3. Obergeschoss (Third Floor)  
+Storey type: Upper floor  
+
+Plan orientation:
+- North is at the top of the plan
+- East is to the right
+- South is at the bottom
+- West is to the left
+
+The floor has an elongated east–west layout and consists of a west wing, a central circulation and service zone, and an east wing.
+
+This description defines rooms, walls, doors, and access relationships only. No geometric dimensions or measurements are specified.
+
+
+2. WEST WING – ROOM LAYOUT
+
+2.1 West Wing Corridor (K.3.01)
+
+K.3.01 is a longitudinal corridor running east–west.
+It provides access to all rooms in the west wing and connects to the east-side landing K.3.00.
+
+The corridor has:
+- multiple segmented wall sections on its north and south sides, each corresponding to a door to an adjacent room
+- a connection at its east end to K.3.00
+- a door on its west side connecting to room K.3.08
+
+
+2.2 West Wing – North Row Rooms
+
+The following rooms are located north of corridor K.3.01, arranged from west to east:
+
+- Room K.3.09
+- Room K.3.10
+- Room K.3.11
+- Room K.3.12
+- Room K.3.13
+
+Each of these rooms:
+- is rectangular
+- has four bounding walls (north, east, south, west)
+- has a single door on its south wall opening into corridor K.3.01
+- shares its east wall with the west wall of the next room in sequence (except K.3.13, which is the last room)
+
+Each room is accessible only via corridor K.3.01.
+
+
+2.3 West Wing – South Row Rooms
+
+The following rooms are located south of corridor K.3.01, arranged from west to east:
+
+- Room K.3.07
+- Room K.3.06
+- Room K.3.05
+
+Each of these rooms:
+- is rectangular
+- has four bounding walls (north, east, south, west)
+- has a single door on its north wall opening into corridor K.3.01
+- shares its east wall with the west wall of the next room in sequence (except K.3.05, which is the last room)
+
+Each room is accessible only via corridor K.3.01.
+
+
+2.4 West-End Technical Room
+
+Room K.3.08 is located at the west end of the west wing.
+It is rectangular, has four bounding walls, and is accessed by a single door on its east wall connecting to corridor K.3.01.
+
+
+3. CENTRAL SERVICE ROOM
+
+Room K.3.04 is a technical/service room located south of corridor K.3.01.
+It is rectangular, has four bounding walls, and is accessed by a single door on its north wall opening into corridor K.3.01.
+
+
+4. EAST-SIDE LANDING AND SERVICE CORE
+
+4.1 East Landing / Corridor (K.3.00)
+
+K.3.00 is a compact landing space located east of corridor K.3.01.
+It acts as a distribution node for the east wing and service spaces.
+
+K.3.00 provides access to:
+- corridor K.3.01 (west)
+- elevator A_HW_3.3 (west side)
+- stairwell TRH_HW_3.1 (east side)
+- WC rooms K.3.03 and K.3.02 (south)
+- room K.3.14 (east)
+
+All access to the east wing and vertical circulation occurs via K.3.00.
+
+
+4.2 WC Rooms
+
+Two WC rooms are located south of K.3.00:
+
+- Room K.3.03
+- Room K.3.02
+
+Each WC:
+- is rectangular
+- has four bounding walls
+- has a single door on its north wall opening into K.3.00
+
+Rooms K.3.03 and K.3.02 share a common wall between them.
+
+
+4.3 Elevator
+
+The elevator is identified as A_HW_3.3.
+It is accessed via a single door on its east wall opening into K.3.00.
+The elevator has no other access on this floor.
+
+
+4.4 Stairwell
+
+The stairwell is identified as TRH_HW_3.1.
+It is rectangular and has four bounding walls.
+It is accessed by a single door on its west wall opening into K.3.00.
+The stair provides vertical circulation to other floors.
+
+
+5. EAST WING
+
+5.1 Main East Wing Room
+
+Room K.3.14 is a large rectangular room located east of K.3.00.
+It has four bounding walls and is accessed by a single door on its west wall opening into K.3.00.
+
+
+5.2 Internal Subdivision
+
+Room K.3.15 is a smaller rectangular room fully contained within room K.3.14.
+It is separated from K.3.14 by an internal partition wall.
+Room K.3.15 is accessed exclusively by a single door on its west wall opening into room K.3.14.
+It has no direct access to corridors or other spaces.
+
+
+6. ACCESS AND CONNECTIVITY SUMMARY
+
+- All west wing rooms (K.3.09–K.3.13, K.3.07–K.3.05, K.3.08, K.3.04) are accessed exclusively via corridor K.3.01.
+- Corridor K.3.01 connects only to K.3.00 on its east side.
+- K.3.00 acts as the sole access node for WCs, elevator, stairwell, and east wing rooms.
+- Elevator A_HW_3.3 and stairwell TRH_HW_3.1 are accessed only via K.3.00.
+- Room K.3.15 is accessed only via room K.3.14.
+- No room on this floor has direct exterior access.
+
+This textual description is the authoritative source used to generate the GREB representation of HW – 3. Obergeschoss.
