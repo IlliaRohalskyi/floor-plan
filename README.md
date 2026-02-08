@@ -129,7 +129,7 @@ Requires OpenAI API key and manually authored floor plan descriptions.
 | Method | Real Building (Rooms) | Real Building (Connections) | Best Use Case |
 |--------|----------------------|----------------------------|---------------|
 | Classical CV | 25% (4/16) | N/A | Clean synthetic plans |
-| U-Net | 0% (0/16) | N/A | Synthetic plans matching training |
+| U-Net | 42% (4/16) | 45% (5/16) | Synthetic plans matching training |
 | LLM | 100% (16/16) | 100% (14/14) | Manual descriptions available |
 | **OCR + Geometry** | **81% (13/16)** | **79% (11/14)** | **Real labeled plans** |
 
