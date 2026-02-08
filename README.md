@@ -176,4 +176,8 @@ MIT License
 
 ## Contact
 
+<<<<<<< HEAD
 For questions or issues, please open a GitHub issue or contact illia.rohalskyi.dev@gmail.com.
+=======
+For questions or issues, please open a GitHub issue or contact illia.rohalskyi.dev@gmail.com.
+>>>>>>> cc3bc91ba56456c1c3ee1b39c31c30a7dd1b632b
