@@ -8,7 +8,7 @@ Rather than extracting spatial structure directly from raster images, the approa
 
 ## Project Overview
 
-The core research question addressed in this project is:
+One of the core research question addressed in this project is:
 
 > Can a large language model reliably translate structured natural-language descriptions of floor plans into a formal GREBNET representation, expressed in GREBTL, suitable for symbolic reasoning and navigation?
 
