@@ -1,12 +1,12 @@
 This file contains a structured natural-language description of the third floor (3. Obergeschoss) of building HW. It is intended to be read as an authoritative semantic specification of the floor plan rather than as a narrative explanation or architectural drawing substitute. Each room, corridor, and service space is described explicitly in terms of its walls, doors, and access relationships.
 
-The description is written to be both human-readable and machine-interpretable. It serves as the direct input for generating a GREB (Generic Role–Entity-Based) representation, where rooms and building elements are modeled as entities connected by formal role associations. Directions (north, east, south, west) refer to the plan orientation stated in the file and are used consistently throughout.
+The description is written to be both human-readable and machine-interpretable. It serves as the direct input for generating a GREBNET representation expressed using the GREB Thought Language (GREBTL). Directions (north, east, south, west) refer to the plan orientation stated in the file and are used consistently throughout.
 
 No geometric dimensions, proportions, or visual details are implied. Instead, the focus is on topological structure—what spaces exist, how they are connected, and through which walls or doors access occurs. Readers should therefore interpret this file as a controlled textual abstraction of the floor plan that defines connectivity and adjacency, not exact physical geometry.
 
-HW – 3. OBERGESCHOSS
-TEXTUAL FLOOR PLAN DESCRIPTION
-(Authoritative Input for GREB Generation)
+HW – 3. OBERGESCHOSS  
+TEXTUAL FLOOR PLAN DESCRIPTION  
+(Authoritative Input for GREBTL-Based GREBNET Generation)
 
 1. GENERAL INFORMATION
 
@@ -158,4 +158,4 @@ It has no direct access to corridors or other spaces.
 - Room K.3.15 is accessed only via room K.3.14.
 - No room on this floor has direct exterior access.
 
-This textual description is the authoritative source used to generate the GREB representation of HW – 3. Obergeschoss.
+This textual description is the authoritative source used to generate the GREBNET representation of HW – 3. Obergeschoss, as expressed in GREBTL.
