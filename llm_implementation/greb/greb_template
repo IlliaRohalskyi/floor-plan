@@ -1,18 +1,20 @@
-GREB Template Usage and LLM Interpretation
+GREBTL Template Usage and LLM Interpretation
 
-The following GREB template defines the canonical structure that the large language model (LLM) is instructed to produce when translating a textual floor plan description into the GREB thought language. Rather than allowing free-form generation, the LLM is constrained to emit GREB statements that conform to this fixed pattern, ensuring syntactic correctness and structural consistency across generated outputs.
+The following GREBTL template defines the canonical structure that the large language model (LLM) is instructed to produce when translating a textual floor plan description into the Generic Role–Entity-Based Thought Language (GREBTL). Rather than allowing free-form generation, the LLM is constrained to emit GREBTL statements that conform to this fixed pattern, ensuring syntactic correctness and structural consistency across generated outputs.
 
 Conceptually, the LLM treats each room or space as an entity composed of exactly four wall components, arranged in a closed cyclic topology. Doors and windows are modeled as features attached to specific walls, while spatial connectivity is expressed explicitly through shared doors, wall-to-wall adjacency, and optional room-level access relations. For shared circulation spaces such as corridors, wall segmentation is used to avoid ambiguity when multiple rooms connect to the same side.
 
-During generation, the LLM instantiates this template by substituting concrete identifiers for rooms, walls, doors, and neighboring spaces based solely on the information provided in the textual description. No geometric reasoning, measurement inference, or visual interpretation is performed. As a result, the correctness of the generated GREB code depends entirely on the completeness and accuracy of the input description, while the template itself guarantees a well-formed and machine-readable representation.
+During generation, the LLM instantiates this template by substituting concrete identifiers for rooms, walls, doors, and neighboring spaces based solely on the information provided in the textual description. No geometric reasoning, measurement inference, or visual interpretation is performed. As a result, the correctness of the generated GREBTL code—and thus of the resulting GREBNET representation—depends entirely on the completeness and accuracy of the input description, while the template itself guarantees a well-formed and machine-readable network specification.
+
 
 // =====================================================
-// GREB TEMPLATE
+// GREBTL TEMPLATE
 // Purpose: Copy this block for each space/room and fill placeholders.
 // Notes:
 //  - Use exact identifiers consistently (e.g., K.3.09, Wall K.3.09 North).
-//  - Declare each DOOR on BOTH sides (two wall&door statements).
-//  - For corridor walls shared by many rooms, split the corridor wall into segments.
+//  - Declare each DOOR on BOTH sides (two wall & door statements).
+//  - For corridor walls shared by many rooms, split the corridor wall
+//    into explicit segments.
 // =====================================================
 
 
@@ -43,12 +45,12 @@ Wall <ROOM_ID> West  (connected) Wall <ROOM_ID> North
 // -----------------------------------------------------
 // Replace <THIS_WALL> with the wall on this room that contains the door.
 // Replace <NEIGHBOR_ID> and <NEIGHBOR_WALL> with the adjacent space and its wall.
-// Replace <DOOR_ID> with a single shared door identifier (same on both sides).
+// Replace <DOOR_ID> with a single shared door identifier.
 
 Wall <ROOM_ID> <THIS_WALL> (wall & door) Door <DOOR_ID>
 Wall <NEIGHBOR_ID> <NEIGHBOR_WALL> (wall & door) Door <DOOR_ID>
 
-// OPTIONAL: add explicit room-to-room access (if required by your schema)
+// OPTIONAL: explicit room-to-room access relation (if required)
 <ROOM_ID> (connected & access) <NEIGHBOR_ID>
 
 
@@ -65,7 +67,6 @@ Wall <ROOM_ID> <WINDOW_WALL> (wall & window) Window <WIN_ID_2>
 // [E] WALL-SHARING BETWEEN ADJACENT ROOMS (recommended)
 // -----------------------------------------------------
 // Use when two spaces share a boundary wall segment.
-// Example for adjacent rooms east-west:
 
 Wall <ROOM_ID> East (connected) Wall <ADJ_ROOM_ID> West
 
@@ -73,10 +74,10 @@ Wall <ROOM_ID> East (connected) Wall <ADJ_ROOM_ID> West
 // -----------------------------------------------------
 // [F] CORRIDOR WALL SEGMENTATION (important for long corridors)
 // -----------------------------------------------------
-// If multiple rooms connect along one corridor side, do NOT reuse one corridor wall.
-// Instead, define one corridor wall segment per adjacent room.
+// If multiple rooms connect along one corridor side, do NOT reuse a single
+// corridor wall. Instead, define one corridor wall segment per adjacent room.
 //
-// Example for corridor K.3.01 north side segments shared with rooms K.3.09 and K.3.10:
+// Example for corridor K.3.01 north side:
 
 K.3.01 (room & wall) Wall K.3.01 North-09
 K.3.01 (room & wall) Wall K.3.01 North-10
@@ -84,13 +85,11 @@ K.3.01 (room & wall) Wall K.3.01 North-10
 Wall K.3.09 South (connected) Wall K.3.01 North-09
 Wall K.3.10 South (connected) Wall K.3.01 North-10
 
-// You may also add (connected) relations between corridor wall segments if needed:
-// Wall K.3.01 North-09 (connected) Wall K.3.01 North-10
-
 
 // -----------------------------------------------------
 // [G] OPTIONAL: POSITION / VIEWPOINT STATEMENTS
 // -----------------------------------------------------
-// Replace <LEFT_WALL> and <RIGHT_WALL> with the two reference walls for the element.
+// Replace <LEFT_WALL> and <RIGHT_WALL> with reference walls.
 
-{Wall <ROOM_ID> <LEFT_WALL> (left & right) Wall <ROOM_ID> <RIGHT_WALL>}(viewing direction & viewpoint) Door <DOOR_ID>
+{Wall <ROOM_ID> <LEFT_WALL> (left & right) Wall <ROOM_ID> <RIGHT_WALL>}
+(viewing direction & viewpoint) Door <DOOR_ID>
