@@ -1,4 +1,4 @@
-# Floor Plan to Navigation Graph Extraction
+# Floor Plan to Navigation Graph Extraction 
 
 This repository contains the implementation of four different approaches for extracting robot-navigable graphs from human-readable floor plans, as described in our paper "A Comparative Study of Methods for Extracting Navigation Graphs from Floor Plans."
 
@@ -29,7 +29,7 @@ Converting floor plans into machine-interpretable navigation graphs is challengi
 
 **Best For:** Clean synthetic floor plans with continuous walls
 
-**Limitations:** Fragments on realistic drawings with text, furniture, and dimension markers
+**Limitations:** Fragments on realistic drawings with text, furniture, and dimension markers, Partial door detection based on template matching on simple floor plans.
 
 **Results:** 25% room detection on real building (4/16 rooms), 100% on synthetic plans (6/6 rooms)
 
